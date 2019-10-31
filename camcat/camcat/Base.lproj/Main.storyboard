@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="camcat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WPA-8l-wmb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woU-m3-gbS">
+                                <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="064-jJ-bHX"/>
+                                    <constraint firstAttribute="width" constant="200" id="rwT-XJ-CMh"/>
+                                </constraints>
+                                <state key="normal" title="take" image="icon.png"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GFF-G7-BNa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WPA-8l-wmb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0aM-In-STn"/>
+                            <constraint firstItem="WPA-8l-wmb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="J9i-R0-J4H"/>
+                            <constraint firstItem="WPA-8l-wmb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PkE-21-uNC"/>
+                            <constraint firstItem="woU-m3-gbS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Z7T-QJ-sbM"/>
+                            <constraint firstItem="woU-m3-gbS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="crZ-gN-wt4"/>
+                            <constraint firstItem="WPA-8l-wmb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rJn-f8-PJx"/>
+                            <constraint firstAttribute="bottom" secondItem="WPA-8l-wmb" secondAttribute="bottom" id="sTU-Qt-ZXM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="photo" destination="WPA-8l-wmb" id="zrN-hr-iea"/>
+                        <outlet property="takePhotoButton" destination="woU-m3-gbS" id="L5V-SX-8Lj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="112.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon.png" width="545.25" height="543"/>
+    </resources>
+</document>
