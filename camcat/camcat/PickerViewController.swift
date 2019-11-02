@@ -8,11 +8,16 @@
 
 import UIKit
 
-final class ImageChosen {
-    static let image = ImageChosen()
-    var imageData:UIImage = UIImage(named: "icon.png")!
-    private init() {
-        print("Singleton initialized")
+class PickedImage{
+    var data:UIImage?
+    static let instance = PickedImage()
+
+    func get() -> PickedImage {
+        return .instance
+    }
+    
+    private init(){
+        // Do nothing
     }
 }
 
@@ -22,7 +27,6 @@ class PickerViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet var calculateButton: UIButton!
     @IBOutlet var libraryButton: UIButton!
     @IBOutlet var cameraButton: UIButton!
-    var imgData:UIImage?
     
     @IBAction func useCamera(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
@@ -48,14 +52,15 @@ class PickerViewController: UIViewController, UINavigationControllerDelegate, UI
         self.dismiss(animated: true, completion: nil)
         imgPreview.contentMode = UIView.ContentMode.scaleAspectFit
         imgPreview.image = info[.originalImage] as? UIImage
-        imgData = info[.originalImage] as? UIImage
+        let pickedImage = PickedImage.instance.get()
+        pickedImage.data = info[.originalImage] as? UIImage
     }
     
     @IBAction func calculation(_ sender: Any) {
-        //ImageChosen.image.imageData = imgData!
-        if(imgData == nil){
+        let pickedImage = PickedImage.instance.get()
+        if(pickedImage.data == nil){
             let alert = UIAlertController(title: "Alert", message: "You have to pick an image first!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "CLose", style: UIAlertAction.Style.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }else{
             let mainView = self.storyboard?.instantiateViewController(withIdentifier: "mainView") as! MainViewController
@@ -69,7 +74,8 @@ class PickerViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     func setUp() {
-        if(imgData == nil){
+        let pickedImage = PickedImage.instance.get()
+        if(pickedImage.data == nil){
             imgPreview.contentMode = UIView.ContentMode.center;
             imgPreview.image = UIImage(named: "no_img_indicator.png")!
         }
