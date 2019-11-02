@@ -52,7 +52,15 @@ class PickerViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     @IBAction func calculation(_ sender: Any) {
-        ImageChosen.image.imageData = imgData!
+        //ImageChosen.image.imageData = imgData!
+        if(imgData == nil){
+            let alert = UIAlertController(title: "Alert", message: "You have to pick an image first!", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "CLose", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            let mainView = self.storyboard?.instantiateViewController(withIdentifier: "mainView") as! MainViewController
+            self.navigationController?.pushViewController(mainView, animated: true)
+        }
     }
     
     override func viewDidLoad() {
@@ -61,8 +69,7 @@ class PickerViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     func setUp() {
-
-        if(imgPreview.image == nil){
+        if(imgData == nil){
             imgPreview.contentMode = UIView.ContentMode.center;
             imgPreview.image = UIImage(named: "no_img_indicator.png")!
         }
