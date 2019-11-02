@@ -15,7 +15,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet var calculateButton: UIButton!
     @IBOutlet var libraryButton: UIButton!
     @IBOutlet var cameraButton: UIButton!
-    
+    @IBOutlet var imgPreview: UIImageView!
     
 //    @IBAction func takePhoto(_ sender: Any) {
 //        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
@@ -43,6 +43,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 //        takePhotoButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
 //        takePhotoButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
 //        takePhotoButton.layer.cornerRadius = takePhotoButton.frame.size.width/2
+        if(imgPreview.image == nil){
+            imgPreview.contentMode = UIView.ContentMode.center;
+            imgPreview.image = UIImage(named: "no_img_indicator.png")!
+        }
         calculateButton.layer.borderWidth = 2
         calculateButton.layer.cornerRadius = 10
         calculateButton.layer.borderColor = UIColor.gray.cgColor
