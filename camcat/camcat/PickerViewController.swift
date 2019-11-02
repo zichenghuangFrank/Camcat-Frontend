@@ -10,7 +10,7 @@ import UIKit
 
 final class ImageChosen {
     static let image = ImageChosen()
-    var imageData:UIImage = UIImage(named: "icon.png")!
+    var imageData:UIImage = UIImage(named: "no_img_indicator.png")!
     private init() {
         print("Singleton initialized")
     }
