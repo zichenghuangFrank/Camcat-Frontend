@@ -46,6 +46,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         calculateButton.layer.borderWidth = 2
         calculateButton.layer.cornerRadius = 10
         calculateButton.layer.borderColor = UIColor.gray.cgColor
+        libraryButton.layer.borderWidth = 2
+        libraryButton.layer.cornerRadius = 10
+        libraryButton.layer.borderColor = UIColor.gray.cgColor
+        cameraButton.layer.borderWidth = 2
+        cameraButton.layer.cornerRadius = 10
+        cameraButton.layer.borderColor = UIColor.gray.cgColor
+
     }
 }
 
