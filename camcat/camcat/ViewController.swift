@@ -43,6 +43,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 //        takePhotoButton.layer.cornerRadius = takePhotoButton.frame.size.width/2
         calculateButton.layer.borderWidth = 2
         calculateButton.layer.cornerRadius = 10
+        calculateButton.layer.borderColor = UIColor.gray.cgColor
     }
 }
 
