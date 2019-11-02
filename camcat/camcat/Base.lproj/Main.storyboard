@@ -15,36 +15,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WPA-8l-wmb">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WPA-8l-wmb">
+                                <rect key="frame" x="0.0" y="194" width="414" height="541"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woU-m3-gbS">
-                                <rect key="frame" x="107" y="348" width="200" height="200"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZiC-2P-ZlF">
+                                <rect key="frame" x="112" y="785" width="190" height="59"/>
+                                <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="064-jJ-bHX"/>
-                                    <constraint firstAttribute="width" constant="200" id="rwT-XJ-CMh"/>
+                                    <constraint firstAttribute="width" constant="190" id="hxc-Re-awU"/>
                                 </constraints>
-                                <state key="normal" title="take" image="icon.png"/>
-                                <connections>
-                                    <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GFF-G7-BNa"/>
-                                </connections>
+                                <fontDescription key="fontDescription" type="system" pointSize="39"/>
+                                <state key="normal" title="Calculate">
+                                    <color key="titleColor" systemColor="placeholderTextColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="WPA-8l-wmb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0aM-In-STn"/>
+                            <constraint firstItem="ZiC-2P-ZlF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CgM-Lo-oeY"/>
                             <constraint firstItem="WPA-8l-wmb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="J9i-R0-J4H"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZiC-2P-ZlF" secondAttribute="bottom" constant="18" id="LHW-Cj-z8n"/>
                             <constraint firstItem="WPA-8l-wmb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PkE-21-uNC"/>
-                            <constraint firstItem="woU-m3-gbS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Z7T-QJ-sbM"/>
-                            <constraint firstItem="woU-m3-gbS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="crZ-gN-wt4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZiC-2P-ZlF" secondAttribute="trailing" constant="50" id="Pt4-X1-tQm"/>
+                            <constraint firstItem="ZiC-2P-ZlF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="dkT-h9-d8k"/>
                             <constraint firstItem="WPA-8l-wmb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rJn-f8-PJx"/>
                             <constraint firstAttribute="bottom" secondItem="WPA-8l-wmb" secondAttribute="bottom" id="sTU-Qt-ZXM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="calculateButton" destination="ZiC-2P-ZlF" id="hsf-Xq-m4j"/>
                         <outlet property="photo" destination="WPA-8l-wmb" id="zrN-hr-iea"/>
-                        <outlet property="takePhotoButton" destination="woU-m3-gbS" id="L5V-SX-8Lj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -52,7 +54,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="112.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="icon.png" width="545.25" height="543"/>
-    </resources>
 </document>
