@@ -29,19 +29,23 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhM-Nu-giK">
-                                <rect key="frame" x="221" y="97" width="125" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhM-Nu-giK">
+                                <rect key="frame" x="217" y="97" width="140" height="57"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="Ug0-H1-K5q"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <state key="normal" title="Camera">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yra-ve-oLv">
-                                <rect key="frame" x="69" y="97" width="110" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yra-ve-oLv">
+                                <rect key="frame" x="57" y="97" width="140" height="57"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="F8H-8Z-Cuf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <state key="normal" title="Library">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -51,12 +55,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="WPA-8l-wmb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0aM-In-STn"/>
+                            <constraint firstItem="fhM-Nu-giK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="80" id="6Cs-Pf-YaW"/>
+                            <constraint firstItem="Yra-ve-oLv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="53" id="7Wz-W5-aoC"/>
+                            <constraint firstItem="Yra-ve-oLv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-80" id="9tP-ce-bTu"/>
                             <constraint firstItem="ZiC-2P-ZlF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CgM-Lo-oeY"/>
                             <constraint firstItem="WPA-8l-wmb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="J9i-R0-J4H"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZiC-2P-ZlF" secondAttribute="bottom" constant="18" id="LHW-Cj-z8n"/>
                             <constraint firstItem="WPA-8l-wmb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PkE-21-uNC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZiC-2P-ZlF" secondAttribute="trailing" constant="50" id="Pt4-X1-tQm"/>
                             <constraint firstItem="ZiC-2P-ZlF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="dkT-h9-d8k"/>
+                            <constraint firstItem="Yra-ve-oLv" firstAttribute="baseline" secondItem="fhM-Nu-giK" secondAttribute="baseline" id="gEe-JG-QzG"/>
                             <constraint firstItem="WPA-8l-wmb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rJn-f8-PJx"/>
                             <constraint firstAttribute="bottom" secondItem="WPA-8l-wmb" secondAttribute="bottom" id="sTU-Qt-ZXM"/>
                         </constraints>
