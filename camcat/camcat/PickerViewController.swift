@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+class PickerViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     @IBOutlet var imgPreview: UIImageView!
     @IBOutlet var calculateButton: UIButton!
