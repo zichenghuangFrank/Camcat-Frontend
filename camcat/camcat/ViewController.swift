@@ -27,9 +27,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true, completion: nil)
-        imgPreview.contentMode = UIView.ContentMode.scaleAspectFit
+        //imgPreview.contentMode = UIView.ContentMode.scaleAspectFit
         imgPreview.image = info[.originalImage] as? UIImage
-        
     }
     
     override func viewDidLoad() {
