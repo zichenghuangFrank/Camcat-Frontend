@@ -14,6 +14,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet var calculateButton: UIButton!
     @IBOutlet var libraryButton: UIButton!
     @IBOutlet var cameraButton: UIButton!
+    var imgData:UIImage?
     
     @IBAction func useCamera(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
@@ -25,10 +26,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
+    @IBAction func useLibrary(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+            imagePicker.allowsEditing = false
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true, completion: nil)
         imgPreview.contentMode = UIView.ContentMode.scaleAspectFit
         imgPreview.image = info[.originalImage] as? UIImage
+        imgData = info[.originalImage] as? UIImage
     }
     
     override func viewDidLoad() {
@@ -36,7 +48,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         setUp()
     }
     
-    func setUp(){
+    func setUp() {
 
         if(imgPreview.image == nil){
             imgPreview.contentMode = UIView.ContentMode.center;
