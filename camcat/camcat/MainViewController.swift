@@ -49,6 +49,11 @@ class MainViewController: UIViewController {
         panMethod.minimumNumberOfTouches = 2
         imgView.addGestureRecognizer(pinchMethod)
         imgView.addGestureRecognizer(panMethod)
+        //
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgeSwiped))
+        edgePan.edges = .left
+        view.addGestureRecognizer(edgePan)
+        //
     }
     
     //---Gesture Recognition Methods Start---
@@ -63,11 +68,19 @@ class MainViewController: UIViewController {
     }
     
     @objc func handlePan(sender: UIPanGestureRecognizer) {                                                     //Move img with two fingers
+        print("2-finger Pan Detedted")
         let gview = sender.view
         if sender.state == .began || sender.state == .changed {
             let translation = sender.translation(in: gview?.superview)
             gview?.center = CGPoint(x: (gview?.center.x)! + translation.x, y: (gview?.center.y)! + translation.y)
             sender.setTranslation(CGPoint.zero, in: gview?.superview)
+        }
+    }
+    
+    @objc func screenEdgeSwiped(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        print("Screen-edge -swipe Detected")
+        if recognizer.state == .recognized {
+            self.navigationController?.popViewController(animated: true) //Pop current page
         }
     }
     
