@@ -30,16 +30,22 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhM-Nu-giK">
-                                <rect key="frame" x="230" y="97" width="106" height="57"/>
+                                <rect key="frame" x="221" y="97" width="125" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Camera">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yra-ve-oLv">
-                                <rect key="frame" x="71" y="97" width="106" height="57"/>
+                                <rect key="frame" x="69" y="97" width="110" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Library">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -58,6 +64,8 @@
                     </view>
                     <connections>
                         <outlet property="calculateButton" destination="ZiC-2P-ZlF" id="hsf-Xq-m4j"/>
+                        <outlet property="cameraButton" destination="fhM-Nu-giK" id="knD-Dd-rQ9"/>
+                        <outlet property="libraryButton" destination="Yra-ve-oLv" id="LAV-JG-k47"/>
                         <outlet property="photo" destination="WPA-8l-wmb" id="zrN-hr-iea"/>
                     </connections>
                 </viewController>

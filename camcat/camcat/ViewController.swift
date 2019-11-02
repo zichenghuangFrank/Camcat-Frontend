@@ -13,6 +13,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet var photo: UIImageView!
 //    @IBOutlet var takePhotoButton: UIButton!
     @IBOutlet var calculateButton: UIButton!
+    @IBOutlet var libraryButton: UIButton!
+    @IBOutlet var cameraButton: UIButton!
     
     
 //    @IBAction func takePhoto(_ sender: Any) {
