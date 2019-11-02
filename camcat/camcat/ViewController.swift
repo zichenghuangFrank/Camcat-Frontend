@@ -10,12 +10,10 @@ import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
-    @IBOutlet var photo: UIImageView!
-//    @IBOutlet var takePhotoButton: UIButton!
+    @IBOutlet var imgPreview: UIImageView!
     @IBOutlet var calculateButton: UIButton!
     @IBOutlet var libraryButton: UIButton!
     @IBOutlet var cameraButton: UIButton!
-    @IBOutlet var imgPreview: UIImageView!
     
     @IBAction func useCamera(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
@@ -26,22 +24,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             present(imagePicker, animated: true, completion: nil)
         }
     }
-
-    //    @IBAction func takePhoto(_ sender: Any) {
-//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera){
-//            print("inside")
-//            let imagePicker = UIImagePickerController()
-//            imagePicker.delegate = self
-//            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-//            imagePicker.allowsEditing = false
-//            present(imagePicker, animated: true, completion: nil)
-//        }
-//        print("out")
-//    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true, completion: nil)
-        photo.image = info[.originalImage] as? UIImage
+        imgPreview.contentMode = UIView.ContentMode.scaleAspectFit
+        imgPreview.image = info[.originalImage] as? UIImage
+        
     }
     
     override func viewDidLoad() {
