@@ -45,7 +45,10 @@ class MainViewController: UIViewController {
         print("prepareGestureRecog Called")
         imgView.isUserInteractionEnabled = true
         let pinchMethod = UIPinchGestureRecognizer(target: self, action: #selector(pinchImage(sender:)))    //Zoom in/out
+        let panMethod = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))         //Move img with two fingers
+        panMethod.minimumNumberOfTouches = 2
         imgView.addGestureRecognizer(pinchMethod)
+        imgView.addGestureRecognizer(panMethod)
     }
     
     //---Gesture Recognition Methods Start---
@@ -58,8 +61,22 @@ class MainViewController: UIViewController {
             sender.scale = 1.0
         }
     }
+    
+    @objc func handlePan(sender: UIPanGestureRecognizer) {                                                     //Move img with two fingers
+        let gview = sender.view
+        if sender.state == .began || sender.state == .changed {
+            let translation = sender.translation(in: gview?.superview)
+            gview?.center = CGPoint(x: (gview?.center.x)! + translation.x, y: (gview?.center.y)! + translation.y)
+            sender.setTranslation(CGPoint.zero, in: gview?.superview)
+        }
+    }
+    
     //---Gesture Recognition Methods End---
 
+    func drawImage(){   //Draw blue rectangle on
+        
+    }
+    
     /*
     // MARK: - Navigation
 
