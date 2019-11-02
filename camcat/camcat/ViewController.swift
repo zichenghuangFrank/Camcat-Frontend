@@ -65,5 +65,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         cameraButton.layer.borderColor = UIColor.gray.cgColor
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Hide the Navigation Bar
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
 }
 
