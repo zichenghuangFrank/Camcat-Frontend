@@ -9,12 +9,34 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
+    var imgData:UIImage!
+    var imgView:UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        image.image = ImageChosen.image.imageData
-        // Do any additional setup after loading the view.
+        prepareView()
+    }
+    
+    func prepareView(){
+        let pickedImage = PickedImage.instance.get()
+        imgData = pickedImage.data
+        drawImageView()
+    }
+    
+    func drawImageView(){
+        imgView = UIImageView(image: imgData)
+        imgView.contentMode = UIView.ContentMode.scaleAspectFit
+        imgView.frame = CGRect(x: 0, y: 20, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        view.addSubview(imgView)
+    }
+    
+    func drawOperatorBar(){
+        
+    }
+    
+    func drawExpressionBar(){
+        
     }
     
 
