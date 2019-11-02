@@ -8,6 +8,14 @@
 
 import UIKit
 
+final class ImageChosen {
+    static let image = ImageChosen()
+    var imageData:UIImage = UIImage(named: "icon.png")!
+    private init() {
+        print("Singleton initialized")
+    }
+}
+
 class PickerViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     @IBOutlet var imgPreview: UIImageView!
@@ -41,6 +49,10 @@ class PickerViewController: UIViewController, UINavigationControllerDelegate, UI
         imgPreview.contentMode = UIView.ContentMode.scaleAspectFit
         imgPreview.image = info[.originalImage] as? UIImage
         imgData = info[.originalImage] as? UIImage
+    }
+    
+    @IBAction func calculation(_ sender: Any) {
+        ImageChosen.image.imageData = imgData!
     }
     
     override func viewDidLoad() {

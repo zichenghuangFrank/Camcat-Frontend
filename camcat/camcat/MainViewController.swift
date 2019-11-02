@@ -10,9 +10,10 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        image.image = ImageChosen.image.imageData
         // Do any additional setup after loading the view.
     }
     
