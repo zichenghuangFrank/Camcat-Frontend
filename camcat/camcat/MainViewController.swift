@@ -100,6 +100,7 @@ class MainViewController: UIViewController {
             print("Tap Detected")
             print("You are tapping \(sender.location(in: self.view))")
             print("You are tapping img \(getImgCoordinator(point: sender.location(in: self.view)))")
+            print("Size of Img \(imgData.size)")
         }
     }
     
@@ -115,7 +116,7 @@ class MainViewController: UIViewController {
 
     func getImgCoordinator(point:CGPoint) -> CGPoint{   //Get absolute coordinators for image
         let relativeX = (point.x - imgView.frame.origin.x)/imgView.frame.size.width
-        let relativeY = (point.y - imgView.frame.origin.y)+imgView.frame.size.height
+        let relativeY = (point.y - imgView.frame.origin.y)/imgView.frame.size.height
         let coordinator = CGPoint(x: imgData.size.width*relativeX, y:imgData.size.height*relativeY)
         return coordinator
     }
