@@ -15,11 +15,18 @@ class MainViewController: UIViewController {
     
     var expressionBar:UILabel!
     var operatorBarItem:[UIButton]! //Order: 0.Plus, 1.Minus, 2.Multiply, 3.Divide, 4.Undo
+    @IBOutlet weak var num_stack: UIScrollView!
+
+    var backend = BackEnd()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
         prepareGestureRecog()
+        
+        backend.read()
+        imgView.image = drawRectangleOnImage(image: imgData)
+        create_num_stack()
     }
     
     func prepareView(){
@@ -34,7 +41,7 @@ class MainViewController: UIViewController {
     func drawImageView(){
         imgView = UIImageView(image: imgData)
         imgView.contentMode = UIView.ContentMode.scaleAspectFit
-        imgView.frame = CGRect(x: 0, y: 20, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        imgView.frame = CGRect(x: 0, y: 20, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 200)
         view.addSubview(imgView)
 
     }
@@ -106,11 +113,73 @@ class MainViewController: UIViewController {
         print("Screenedge-swipe Detected")
         if recognizer.state == .recognized {
             self.navigationController?.popViewController(animated: true) //Pop current page
+            backend.box_position.removeAll()
         }
     }
     
     //---Gesture Recognition Methods End---
 
+    //---Draw Box For Text Recognion---
+    func drawRectangleOnImage(image: UIImage) -> UIImage {
+        let imageSize = image.size
+        let scale: CGFloat = 0
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, scale)
+        image.draw(at: CGPoint.zero)
+        for position in backend.box_position {
+            let drawPath = UIBezierPath()
+            // Starting point (left-up corner)
+            let leftUp = CGPoint(x: position.origin.x * imageSize.width, y: (CGFloat(1.0) - position.origin.y) * imageSize.height - position.height * imageSize.height)
+            // Right-up corner
+            let rightUp = CGPoint(x: position.origin.x * imageSize.width + imageSize.width * position.width, y: (CGFloat(1.0) - position.origin.y) * imageSize.height - position.height * imageSize.height)
+            // Right-down corner
+            let rightDown = CGPoint(x: position.origin.x * imageSize.width + imageSize.width * position.width, y: (CGFloat(1.0) - position.origin.y) * imageSize.height - position.height * imageSize.height + position.height * imageSize.height)
+            // Ending point (left-down corner)
+            let leftDown = CGPoint(x: position.origin.x * imageSize.width, y: (CGFloat(1.0) - position.origin.y) * imageSize.height - position.height * imageSize.height + position.height * imageSize.height)
+            
+            drawPath.move(to: leftUp)
+            drawPath.addLine(to: rightUp)
+            drawPath.addLine(to: rightDown)
+            drawPath.addLine(to: leftDown)
+            drawPath.addLine(to: leftUp)
+            
+            UIColor.cyan.setStroke()
+            drawPath.lineWidth = 5.0
+            drawPath.stroke()
+        }
+        let newImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    //---End of Draw Function---
+
+    //---Add Num Button Action---
+    func create_num_stack() {
+        num_stack.sizeToFit()
+        num_stack.layoutIfNeeded()
+        num_stack.backgroundColor = .darkGray
+        var contentWidth: CGFloat = 0.0
+        
+        let length = backend.value.count
+        let width = (num_stack.frame.width / CGFloat(5.0))
+        for i in 0..<length {
+            contentWidth += width
+            let num_button = UIButton(type: .system)
+            num_button.tag = i
+            num_button.frame = CGRect(x: width * CGFloat(i) , y: 0, width: width, height: 50)
+            num_button.setTitle(String(backend.value[i]), for: .normal)
+            num_button.addTarget(self, action: #selector(buttonAction), for: .touchDown)
+            num_button.backgroundColor = UIColor.darkGray
+            num_stack.addSubview(num_button)
+        }
+        num_stack.contentSize = CGSize(width: contentWidth, height: 50)
+    }
+    
+    @objc func buttonAction(sender: UIButton!) {
+        print("Button tapped")
+        backend.equation.append(sender.titleLabel!.text! + " ")
+        backend.calculation()
+    }
+    //---End Num Button Action---
     
     /*
     // MARK: - Navigation
@@ -121,5 +190,6 @@ class MainViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
 
 }
