@@ -113,7 +113,7 @@ class MainViewController: UIViewController {
 
     //---Gesture Recognition Methods End---
 
-    func getImgCoordinator(point:CGPoint) -> CGPoint{
+    func getImgCoordinator(point:CGPoint) -> CGPoint{   //Get absolute coordinators for image
         let relativeX = (point.x - imgView.frame.origin.x)/imgView.frame.size.width
         let relativeY = (point.y - imgView.frame.origin.y)+imgView.frame.size.height
         let coordinator = CGPoint(x: imgData.size.width*relativeX, y:imgData.size.height*relativeY)
