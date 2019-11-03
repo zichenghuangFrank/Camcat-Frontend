@@ -99,8 +99,7 @@ class MainViewController: UIViewController {
         if sender.state == .ended {
             print("Tap Detected")
             print("You are tapping \(sender.location(in: self.view))")
-            print("You are tapping img \(getImgCoordinator(point: sender.location(in: self.view)))")
-            print("Size of Img \(imgData.size)")
+            print("You are tapping \(getImgCoordinator(point: sender.location(in: self.view))) on image")
         }
     }
     
