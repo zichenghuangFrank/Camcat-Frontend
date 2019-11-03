@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     var imgData:UIImage!
     var imgView:UIImageView!
     
-    var expressionBar:UILabel!
+    var expressionBar:UITextField!
     var operatorBarItem:[UIButton]! //Order: 0.Plus, 1.Minus, 2.Multiply, 3.Divide, 4.Undo
     
     override func viewDidLoad() {
@@ -44,7 +44,8 @@ class MainViewController: UIViewController {
     }
     
     func drawExpressionBar(){
-        expressionBar = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.size.width-CGFloat(50), height: 20))
+        expressionBar = UITextField(frame: CGRect(x: 0, y: 0, width: view.frame.size.width-CGFloat(50), height: 20))
+        expressionBar.keyboardType = UIKeyboardType.decimalPad
         expressionBar.center = CGPoint(x: view.frame.size.width/2, y: 50)
         expressionBar.layer.cornerRadius=10;
         expressionBar.layer.borderWidth=1;
@@ -52,6 +53,21 @@ class MainViewController: UIViewController {
         expressionBar.textAlignment = .center
         expressionBar.text = "Equal: 0"
         self.view.addSubview(expressionBar)
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30))
+        doneToolbar.barStyle = .default
+
+       let emptySpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+       let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+
+       let items = [emptySpace, done]
+       doneToolbar.items = items
+       doneToolbar.sizeToFit()
+
+       expressionBar.inputAccessoryView = doneToolbar
+    }
+    
+    @objc func doneButtonAction(){
+        expressionBar.resignFirstResponder()
     }
     
     func prepareGestureRecog(){
