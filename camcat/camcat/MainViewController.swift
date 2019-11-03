@@ -16,7 +16,7 @@ class MainViewController: UIViewController {
     var expressionBar:UITextField!
     var operatorBarItem:[UIButton]! //Order: 0.Plus, 1.Minus, 2.Multiply, 3.Divide, 4.Undo
     @IBOutlet weak var num_stack: UIScrollView!
-
+    
     var backend = BackEnd()
     
     override func viewDidLoad() {
@@ -192,8 +192,8 @@ class MainViewController: UIViewController {
     
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
-        backend.equation.append(sender.titleLabel!.text! + " ")
-        backend.calculation()
+        //backend.equation.append(sender.titleLabel!.text! + " ")
+        //backend.calculation()
     }
     //---End Num Button Action---
     

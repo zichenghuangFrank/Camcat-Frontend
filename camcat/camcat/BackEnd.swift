@@ -14,7 +14,6 @@ class BackEnd {
     static let instance = BackEnd()
     
     var imgData = UIImage()
-    var equation: String = ""
     var box_position: [CGRect] = []
     var value: [Double] = []
     var result: String = ""
@@ -33,7 +32,6 @@ class BackEnd {
                  }
                  print(candidate.string)
                  self.box_position.append(visionReasult.boundingBox)
-                 self.equation.append(candidate.string + " ")
 
                  let strArr = candidate.string.split(separator: " ")
                  let len = strArr.count
@@ -53,7 +51,7 @@ class BackEnd {
          try? requestHandler.perform([request])
      }
     
-    func calculation() {
+    func calculation(_ equation: String) {
         if checkRight(equation) {
             let numericExpression = equation
             let expression = NSExpression(format: numericExpression)
