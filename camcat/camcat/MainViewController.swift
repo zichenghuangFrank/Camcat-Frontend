@@ -20,6 +20,8 @@ class MainViewController: UIViewController {
     var multiButton:UIButton!
     var divButton:UIButton!
     var undoButton:UIButton!
+    var equalSign:UILabel!
+    var resultLabel:UILabel!
     
     @IBOutlet weak var num_stack: UIScrollView!
     
@@ -84,26 +86,34 @@ class MainViewController: UIViewController {
     }
     
     func drawExpressionBar(){
-        expressionBar = UITextField(frame: CGRect(x: 0, y: 0, width: view.frame.size.width-CGFloat(50), height: 20))
+        expressionBar = UITextField(frame: CGRect(x: 0, y: 0, width: view.frame.size.width-CGFloat(50) - 100, height: 30))
         expressionBar.keyboardType = UIKeyboardType.decimalPad
-        expressionBar.center = CGPoint(x: view.frame.size.width/2, y: 50)
+        expressionBar.center = CGPoint(x: (view.frame.size.width-CGFloat(50)-100)/2 + 20, y: 50)
         expressionBar.layer.cornerRadius=10;
         expressionBar.layer.borderWidth=1;
         expressionBar.layer.borderColor=UIColor.black.cgColor
         expressionBar.textAlignment = .center
-        expressionBar.text = "Equal: 0"
+        expressionBar.text = "0"
         self.view.addSubview(expressionBar)
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30))
         doneToolbar.barStyle = .default
 
-       let emptySpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-       let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+        let emptySpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
 
-       let items = [emptySpace, done]
-       doneToolbar.items = items
-       doneToolbar.sizeToFit()
+        let items = [emptySpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
 
-       expressionBar.inputAccessoryView = doneToolbar
+        expressionBar.inputAccessoryView = doneToolbar
+        
+        equalSign = UILabel(frame: CGRect(x: (view.frame.size.width-CGFloat(50)-70), y: 35, width: 20, height: 30))
+        equalSign.text = "="
+        self.view.addSubview(equalSign)
+        
+        resultLabel = UILabel(frame: CGRect(x: (view.frame.size.width-CGFloat(50)-50), y: 35, width: (view.frame.size.width - (view.frame.size.width-CGFloat(50)-30)), height: 30))
+        resultLabel.text = "0"
+        self.view.addSubview(resultLabel)
     }
     
     @objc func doneButtonAction(){
