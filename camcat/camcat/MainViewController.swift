@@ -55,71 +55,32 @@ class MainViewController: UIViewController {
     }
     
     func drawOperatorBar(){
-        addButton = UIButton(frame: CGRect(x: 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50))
-        addButton.setTitle("+", for: UIControl.State.normal)
-        addButton.setTitleColor(UIColor.gray, for: UIControl.State.normal)
-        addButton.titleLabel!.font = UIFont(name: "System", size: 500)
-        addButton.layer.borderWidth = 1
-        addButton.layer.cornerRadius = 10
-        addButton.layer.borderColor = UIColor.gray.cgColor
-        
-//        addButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-//        addButton.setImage(UIImage(systemName: "plus.app.fill"), for: UIControl.State.normal)
+        addButton = getOperator(title: "+", x: 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
         view.addSubview(addButton)
         
-        subButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width/5 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50))
-        subButton.setTitle("-", for: UIControl.State.normal)
-        subButton.setTitleColor(UIColor.gray, for: UIControl.State.normal)
-        subButton.titleLabel!.font = UIFont(name: "System", size: 500)
-        subButton.layer.borderWidth = 1
-        subButton.layer.cornerRadius = 10
-        subButton.layer.borderColor = UIColor.gray.cgColor
-//        subButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-//        subButton.setImage(UIImage(systemName: "minus.square.fill"), for: UIControl.State.normal)
+        subButton = getOperator(title: "-", x: UIScreen.main.bounds.size.width/5 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
         view.addSubview(subButton)
         
-        multiButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width/5*2 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50))
-        multiButton.setTitle("×", for: UIControl.State.normal)
-        multiButton.setTitleColor(UIColor.gray, for: UIControl.State.normal)
-        multiButton.titleLabel!.font = UIFont(name: "System", size: 500)
-        multiButton.layer.borderWidth = 1
-        multiButton.layer.cornerRadius = 10
-        multiButton.layer.borderColor = UIColor.gray.cgColor
-//        multiButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-//        multiButton.setImage(UIImage(systemName: "multiply.square.fill"), for: UIControl.State.normal)
+        multiButton = getOperator(title: "×", x: UIScreen.main.bounds.size.width/5*2 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
         view.addSubview(multiButton)
         
-        divButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width/5*3 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50))
-        divButton.setTitle("÷", for: UIControl.State.normal)
-        divButton.setTitleColor(UIColor.gray, for: UIControl.State.normal)
-        divButton.titleLabel!.font = UIFont(name: "System", size: 500)
-        divButton.layer.borderWidth = 1
-        divButton.layer.cornerRadius = 10
-        divButton.layer.borderColor = UIColor.gray.cgColor
-//        divButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-//        divButton.setImage(UIImage(systemName: "divide.square.fill"), for: UIControl.State.normal)
+        divButton = getOperator(title: "÷", x: UIScreen.main.bounds.size.width/5*3 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
         view.addSubview(divButton)
         
-        undoButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width/5*4 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50))
-        undoButton.setTitle("<–", for: UIControl.State.normal)
-        undoButton.setTitleColor(UIColor.gray, for: UIControl.State.normal)
-        undoButton.titleLabel!.font = UIFont(name: "System", size: 500)
-        undoButton.layer.borderWidth = 1
-        undoButton.layer.cornerRadius = 10
-        undoButton.layer.borderColor = UIColor.gray.cgColor
-//        undoButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-//        let icon = UIImage(systemName:"arrow.uturn.left.square.fill")
-//        undoButton.setImage(icon, for: UIControl.State.normal)
+        undoButton = getOperator(title: "←", x: UIScreen.main.bounds.size.width/5*4 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
         view.addSubview(undoButton)
-        
-        
-        
-//        addButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
 
-        
-//        addButtonUIScreen.main.bounds.size.width/5
-//        view.addSubview(addButton)
-        
+    }
+    
+    func getOperator(title:String, x:CGFloat, y:CGFloat, width:CGFloat, height:CGFloat) -> UIButton{
+        let btn:UIButton = UIButton(frame: CGRect(x: x, y: y, width: width, height: height))
+        btn.setTitle(title, for: UIControl.State.normal)
+        btn.setTitleColor(UIColor.gray, for: UIControl.State.normal)
+        btn.titleLabel!.font = UIFont(name: "System", size: 500)
+        btn.layer.borderWidth = 1
+        btn.layer.cornerRadius = 10
+        btn.layer.borderColor = UIColor.gray.cgColor
+        return btn
     }
     
     func drawExpressionBar(){
