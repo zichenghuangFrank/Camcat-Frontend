@@ -22,9 +22,8 @@ class MainViewController: UIViewController {
     var undoButton:UIButton!
     var equalSign:UILabel!
     var resultLabel:UILabel!
-    
-    @IBOutlet weak var num_stack: UIScrollView!
-    
+    var num_stack: UIScrollView!
+        
     var backend = BackEnd()
     
     override func viewDidLoad() {
@@ -58,20 +57,25 @@ class MainViewController: UIViewController {
     
     func drawOperatorBar(){
         addButton = getOperator(title: "+", x: 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
+        addButton.addTarget(self, action: #selector(signButtonAction), for: .touchDown)
         view.addSubview(addButton)
         
         subButton = getOperator(title: "-", x: UIScreen.main.bounds.size.width/5 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
+        subButton.addTarget(self, action: #selector(signButtonAction), for: .touchDown)
         view.addSubview(subButton)
         
-        multiButton = getOperator(title: "×", x: UIScreen.main.bounds.size.width/5*2 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
+        multiButton = getOperator(title: "*", x: UIScreen.main.bounds.size.width/5*2 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
+        multiButton.addTarget(self, action: #selector(signButtonAction), for: .touchDown)
         view.addSubview(multiButton)
         
-        divButton = getOperator(title: "÷", x: UIScreen.main.bounds.size.width/5*3 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
+        divButton = getOperator(title: "/", x: UIScreen.main.bounds.size.width/5*3 + 10,
+                                y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
+        divButton.addTarget(self, action: #selector(signButtonAction), for: .touchDown)
         view.addSubview(divButton)
         
         undoButton = getOperator(title: "←", x: UIScreen.main.bounds.size.width/5*4 + 10, y: UIScreen.main.bounds.size.height - 130, width: UIScreen.main.bounds.size.width/5 - 20, height: 50)
+        undoButton.addTarget(self, action: #selector(undoButtonAction(sender:)), for: .touchDown)
         view.addSubview(undoButton)
-
     }
     
     func getOperator(title:String, x:CGFloat, y:CGFloat, width:CGFloat, height:CGFloat) -> UIButton{
@@ -93,7 +97,7 @@ class MainViewController: UIViewController {
         expressionBar.layer.borderWidth=1;
         expressionBar.layer.borderColor=UIColor.black.cgColor
         expressionBar.textAlignment = .center
-        expressionBar.text = "0"
+        expressionBar.text = ""
         self.view.addSubview(expressionBar)
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30))
         doneToolbar.barStyle = .default
@@ -116,11 +120,18 @@ class MainViewController: UIViewController {
         self.view.addSubview(resultLabel)
     }
     
-    @objc func doneButtonAction(){
-        expressionBar.resignFirstResponder()
+    func updateResult() {
+        resultLabel.text = backend.result
     }
     
-    func prepareGestureRecog(){
+    @objc func doneButtonAction() {
+        expressionBar.resignFirstResponder()
+        expressionBar.text!.append(" ")
+        backend.calculation(expressionBar.text!)
+        updateResult()
+    }
+    
+    func prepareGestureRecog() {
         print("prepareGestureRecog Called")
         imgView.isUserInteractionEnabled = true
         let pinchMethod = UIPinchGestureRecognizer(target: self, action: #selector(pinchImage(sender:)))    //Zoom in/out
@@ -213,9 +224,10 @@ class MainViewController: UIViewController {
 
     //---Add Num Button Action---
     func create_num_stack() {
+        num_stack = UIScrollView(frame: CGRect(x: 0, y: view.frame.height * 0.75, width: UIScreen.main.bounds.size.width, height: 50))
         num_stack.sizeToFit()
         num_stack.layoutIfNeeded()
-        num_stack.backgroundColor = .darkGray
+        num_stack.backgroundColor = .systemBackground
         var contentWidth: CGFloat = 0.0
         
         let length = backend.value.count
@@ -231,12 +243,31 @@ class MainViewController: UIViewController {
             num_stack.addSubview(num_button)
         }
         num_stack.contentSize = CGSize(width: contentWidth, height: 50)
+        self.view.addSubview(num_stack)
     }
     
     @objc func buttonAction(sender: UIButton!) {
-        print("Button tapped")
-        //backend.equation.append(sender.titleLabel!.text! + " ")
-        //backend.calculation()
+        expressionBar.text?.append(sender.titleLabel!.text! + " ")
+        backend.calculation(expressionBar.text!)
+        updateResult()
+    }
+    
+    @objc func signButtonAction(sender: UIButton!) {
+        expressionBar.text?.append(sender.titleLabel!.text! + " ")
+        backend.calculation(expressionBar.text!)
+        updateResult()
+    }
+    
+    @objc func undoButtonAction(sender: UIButton!) {
+        var text = expressionBar.text?.split(separator: " ")
+        if text!.count >= 1 {
+            text?.removeLast()
+            var full_text = text?.joined(separator: " ")
+            full_text?.append(" ")
+            expressionBar.text = full_text
+            backend.calculation(expressionBar.text!)
+            updateResult()
+        }
     }
     //---End Num Button Action---
     
