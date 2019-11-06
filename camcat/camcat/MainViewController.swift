@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
     var equalSign:UILabel!
     var resultLabel:UILabel!
     var num_stack: UIScrollView!
+    var backGround:UILabel!
         
     var backend = BackEnd()
     
@@ -81,21 +82,32 @@ class MainViewController: UIViewController {
     func getOperator(title:String, x:CGFloat, y:CGFloat, width:CGFloat, height:CGFloat) -> UIButton{
         let btn:UIButton = UIButton(frame: CGRect(x: x, y: y, width: width, height: height))
         btn.setTitle(title, for: UIControl.State.normal)
-        btn.setTitleColor(UIColor.gray, for: UIControl.State.normal)
+        btn.setTitleColor(UIColor.white, for: UIControl.State.normal)
         btn.titleLabel!.font = UIFont(name: "System", size: 500)
         btn.layer.borderWidth = 1
         btn.layer.cornerRadius = 10
         btn.layer.borderColor = UIColor.gray.cgColor
+        btn.backgroundColor = UIColor.lightGray
         return btn
     }
     
     func drawExpressionBar(){
+//        backGround = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.size.width-CGFloat(50), height: 30))
+//        backGround.backgroundColor = .systemBackground
+//        backGround.text = "abc"
+//        self.view.addSubview(backGround)
+        equalSign = UILabel(frame: CGRect(x: (view.frame.size.width-CGFloat(50)-100), y: 35, width: 40, height: 30))
+        equalSign.text = "     ="
+        equalSign.backgroundColor = .systemBackground
+        self.view.addSubview(equalSign)
+
         expressionBar = UITextField(frame: CGRect(x: 0, y: 0, width: view.frame.size.width-CGFloat(50) - 100, height: 30))
         expressionBar.keyboardType = UIKeyboardType.decimalPad
         expressionBar.center = CGPoint(x: (view.frame.size.width-CGFloat(50)-100)/2 + 20, y: 50)
-        expressionBar.layer.cornerRadius=10;
-        expressionBar.layer.borderWidth=1;
-        expressionBar.layer.borderColor=UIColor.black.cgColor
+        expressionBar.layer.cornerRadius=10
+        expressionBar.layer.borderWidth=1
+        expressionBar.layer.borderColor=UIColor.darkGray.cgColor
+        expressionBar.backgroundColor = .systemBackground
         expressionBar.textAlignment = .center
         expressionBar.text = ""
         self.view.addSubview(expressionBar)
@@ -111,12 +123,10 @@ class MainViewController: UIViewController {
 
         expressionBar.inputAccessoryView = doneToolbar
         
-        equalSign = UILabel(frame: CGRect(x: (view.frame.size.width-CGFloat(50)-70), y: 35, width: 20, height: 30))
-        equalSign.text = "="
-        self.view.addSubview(equalSign)
         
-        resultLabel = UILabel(frame: CGRect(x: (view.frame.size.width-CGFloat(50)-50), y: 35, width: (view.frame.size.width - (view.frame.size.width-CGFloat(50)-30)), height: 30))
+        resultLabel = UILabel(frame: CGRect(x: (view.frame.size.width-CGFloat(50)-60), y: 35, width: (view.frame.size.width - (view.frame.size.width-CGFloat(50)-30)), height: 30))
         resultLabel.text = "0"
+        resultLabel.backgroundColor = .systemBackground
         self.view.addSubview(resultLabel)
     }
     
@@ -239,7 +249,7 @@ class MainViewController: UIViewController {
             num_button.frame = CGRect(x: width * CGFloat(i) , y: 0, width: width, height: 50)
             num_button.setTitle(String(backend.value[i]), for: .normal)
             num_button.addTarget(self, action: #selector(buttonAction), for: .touchDown)
-            num_button.backgroundColor = UIColor.darkGray
+//            num_button.backgroundColor = UIColor.darkGray
             num_stack.addSubview(num_button)
         }
         num_stack.contentSize = CGSize(width: contentWidth, height: 50)
